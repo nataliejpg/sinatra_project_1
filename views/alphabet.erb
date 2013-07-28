@@ -3,17 +3,20 @@
 
 <head>
     <title>Chat Ups As A Service</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="alphabet.css" type="text/css"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/alphabet.css" type="text/css"/>
 </head>
 
 <body>
 
     <div class="container">
 
-        <div class="hero-unit">
-            <h1> <%= @to.capitalize %>, if I could rewrite the alphabet I'd put U and I together!</h1>
-            <p><em>from <%= @from.capitalize %><em></p>
+        <div class="row-fluid">
+
+            <div class="span8 offset2 words">
+                <h1> <%= @to.capitalize %>, if I could rewrite the alphabet I'd put U and I together</h1>
+                <p><em>from <%= @from.capitalize %><em></p>
+            </div>
         </div>
 
     </div>

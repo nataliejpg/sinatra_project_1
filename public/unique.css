@@ -3,3 +3,12 @@ background:url(sunset.png);
 background-size: cover;
 background-repeat:no-repeat;
 }
+
+.words{
+    font-family: Parisienne;
+    color: #FAFAFA;
+}
+
+.row-fluid{
+    padding-top: 30%
+}

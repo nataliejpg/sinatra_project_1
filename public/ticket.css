@@ -3,3 +3,13 @@ background:url(parking.JPG);
 background-size: cover;
 background-repeat:no-repeat;
 }
+
+.hero-unit{
+    height: 200px;
+    padding-top: 10px
+}
+
+.fine{
+    color: red;
+    font-family: Impact;
+}

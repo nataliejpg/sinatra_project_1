@@ -3,3 +3,13 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.words{
+    background: black;
+    opacity: .8;
+    color:#FAFAFA;
+}
+
+.row-fluid{
+    padding-top: 20%
+}

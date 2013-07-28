@@ -3,18 +3,22 @@
 
 <head>
     <title>Chat Ups As A Service</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="nerd.css" type="text/css"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/nerd.css" type="text/css"/>
 </head>
 
 <body>
 
     <div class="container">
 
-        <div class="hero-unit">
+        <div class="row-fluid">
 
-            <h1>Me without you, <%= @to.capitalize %>, is like a nerd without braces, a shoe without laces, asentencewithoutspaces.</h1>
-            <p><em>from <%= @from.capitalize %></em></p>
+            <div class="span8 offset2 words">
+
+                <h1>Me without you, <%= @to.capitalize %>, is like a nerd without braces, a shoe without laces, asentencewithoutspaces.</h1>
+                <p><em>from <%= @from.capitalize %></em></p>
+
+            </div>
             
         </div>
 
