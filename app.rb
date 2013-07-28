@@ -20,3 +20,9 @@ get '/:to' do
     @to =params[:to]
     erb :unique
 end
+
+get '/:to/:number' do
+    @to = params[:to]
+    @number= params[:number]
+    erb :phone
+end
