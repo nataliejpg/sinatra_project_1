@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Ups As A Service | Home <%= @name %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css'>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="hero-unit">
+        <h1 class="text-center">So you want to chat someone up but you don't know what to say...<h1>
+        <h2 style="color: red">Don't panic!</h2>
+        <p> We've got it covered, choose one of our tried and tested chat up lines, put who its from and who its to and hit submit. Guaranteed results.<br> <small> Please note that results are not guaranteed</p>
+    </div>
+
+
+    <form method="post" action="/">
+
+        <label>Your first name</label>
+        <input type="text" name="from">
+
+        <label>The recipient's first name</label>
+        <input type="text" name="to">
+
+        <label>Chat up line</label>
+        <div class="controls">
+            <select name="chat">
+                <option id="drink">Drink?</option>
+                <option id="ticket">Parking Ticket</option>
+                <option id="nerd">Me Without You</option>
+                <option id="alphabet">Alphabet</option>
+                <option id="phone">Lost Number</option>
+                <option id="unique">Be Unique</option>
+            </select>
+        </div>
+
+        <label>Your phone number</label>
+        <input type="text" name="number">
+
+        <button type="submit" class="btn">Submit</button>
+
+    </form>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Chat up</th>
+            <th>Info required</th>
+        </tr>
+        <tr>
+            <td>Drink?</td>
+            <td>None</td>
+        </tr>
+        <tr>
+            <td>Parking Ticket<br>Me Without You<br>Alphabet</td>
+            <td>Your first name<br> Recipient's first name</td>
+        </tr>
+        <tr>
+            <td>Lost Number</td>
+            <td>Recipient's first name<br>Your phone number</td>
+        </tr>
+        <tr>
+            <td>Be Unique</td>
+            <td>Recipient's first name</td>
+        </tr>
+    </table>
+
+    <blockquote class="pull-right"><p>Enjoy</p></blockquote>
+
+</div>
+
+</body>
+
