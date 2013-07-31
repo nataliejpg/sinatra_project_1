@@ -17,28 +17,46 @@
 
     <form method="post" action="/">
 
-        <label>Your first name</label>
-        <input type="text" name="from">
+        <div class="row-fluid">
 
-        <label>The recipient's first name</label>
-        <input type="text" name="to">
+            <div class="span4 offset2">
+                <label>Your first name</label>
+                <input type="text" name="from">
+            </div>
 
-        <label>Chat up line</label>
-        <div class="controls">
-            <select name="chat">
-                <option id="drink">Drink?</option>
-                <option id="ticket">Parking Ticket</option>
-                <option id="nerd">Me Without You</option>
-                <option id="alphabet">Alphabet</option>
-                <option id="phone">Lost Number</option>
-                <option id="unique">Be Unique</option>
-            </select>
+            <div class="span4 offset2">
+                <label>The recipient's first name</label>
+                <input type="text" name="to">
+            </div>
         </div>
 
-        <label>Your phone number</label>
-        <input type="text" name="number">
+        <div class="row-fluid">
 
-        <button type="submit" class="btn btn success btn-large">Submit</button>
+            <div class="span4 offset2">
+                <label>Chat up line</label>
+                <div class="controls">
+                    <select name="chat">
+                        <option id="drink">Drink?</option>
+                        <option id="ticket">Parking Ticket</option>
+                        <option id="nerd">Me Without You</option>
+                       <option id="alphabet">Alphabet</option>
+                        <option id="phone">Lost Number</option>
+                        <option id="unique">Be Unique</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="span4 offset2">
+                <label>Your phone number</label>
+                <input type="text" name="number">
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span2 offset5">
+                <button type="submit" class="btn btn success btn-large">Submit</button>
+            </div>
+        </div>
 
     </form>
 
