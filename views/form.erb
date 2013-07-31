@@ -15,48 +15,52 @@
     </div>
 
 
-    <form method="post" action="/">
+    <form method="post" action="/" class="form-horizontal">
 
-        <div class="row-fluid">
-
-            <div class="span6">
-                <label>Your first name</label>
-                <input type="text" name="from">
+            <div class="control-group">
+                <label class="control-label" for="inputFrom">Your first name</label>
+                <div class="controls">
+                    <input type="text" name="from" id="inputFrom">
+                </div>
             </div>
 
-            <div class="span6">
-                <label>The recipient's first name</label>
-                <input type="text" name="to">
+            <div class="control-group">
+                <label class="control-label" for="inputTo">The recipient's first name</label>
+                <div class="controls">
+                    <input type="text" name="from" id="inputTo">
+                </div>
             </div>
-        </div>
 
-        <div class="row-fluid">
+            <div class="control-group">
+                <label class="control-label" for="inputChat">The recipient's first name</label>
+                <div class="controls">
+                    <input type="text" name="to" id="inputChat">
+                </div>
+            </div>
 
-            <div class="span6">
+
+
+            <div class="control-group">
                 <label>Chat up line</label>
                 <div class="controls">
-                    <select name="chat">
-                        <option id="drink">Drink?</option>
-                        <option id="ticket">Parking Ticket</option>
-                        <option id="nerd">Me Without You</option>
-                       <option id="alphabet">Alphabet</option>
-                        <option id="phone">Lost Number</option>
-                        <option id="unique">Be Unique</option>
+                    <select name="chat" id="inputChat">
+                        <option>Drink?</option>
+                        <option>Parking Ticket</option>
+                        <option>Me Without You</option>
+                        <option>Alphabet</option>
+                        <option>Lost Number</option>
+                        <option>Be Unique</option>
                     </select>
                 </div>
             </div>
 
-            <div class="span6">
-                <label>Your phone number</label>
-                <input type="text" name="number">
+            <div class="control-group">
+                <label class="control-label" for="inputPhone">Your phone number</label>
+                <div class="controls">
+                    <input type="text" name="to" id="inputPhone">
+                    <button type="submit" class="btn btn-success btn-large">Submit</button>
+                </div>
             </div>
-        </div>
-
-        <div class="row-fluid">
-            <div class="span2 offset5">
-                <button type="submit" class="btn btn-success btn-large">Submit</button>
-            </div>
-        </div>
 
     </form>
 
@@ -83,7 +87,7 @@
         </tr>
     </table>
 
-    <blockquote class="pull-right"><p>Enjoy</p></blockquote>
+    <blockquote class="pull-right"><p>Please use this service responsibly</p></blockquote>
 
 </div>
 
