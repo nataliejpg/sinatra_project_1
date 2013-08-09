@@ -11,6 +11,11 @@
 
     <div class="container">
 
+    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/phone/<%= @to %>/<%= @from %>/<%= @number %>">
+        <input type="text" class="span3" name="email">
+        <button type="submit" class="btn">Send Page</button>
+    </form>
+
         <div class="row-fluid">
             <div class="words span 6 offset1">
                 <h1> Hey, <%= @to.capitalize %>. I've lost my number, could I borrow yours?</h1>

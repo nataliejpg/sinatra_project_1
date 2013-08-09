@@ -11,6 +11,11 @@
 
     <div class="container">
 
+    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/alphabet/<%= @to %>/<%= @from %>">
+        <input type="text" class="span3" name="email">
+        <button type="submit" class="btn">Send Page</button>
+    </form>
+
         <div class="row-fluid">
 
             <div class="span8 offset2 words">
@@ -18,6 +23,7 @@
                 <p><em>from <%= @from.capitalize %><em></p>
             </div>
         </div>
+
 
     </div>
 

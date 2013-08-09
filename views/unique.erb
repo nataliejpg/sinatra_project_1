@@ -9,11 +9,17 @@
 
 <body>
 
+    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/unique/<%= @to %>/<%= @from %>">
+        <input type="text" class="span3" name="email">
+        <button type="submit" class="btn">Send Page</button>
+    </form>
+
     <div class="container">
 
         <div class="row-fluid">
             <div class="span6 offset3">
                 <h1 class="text-center words">Be unique, <%= @to.capitalize %>. Say yes.</h1>
+                <p class="text-right words"><em>from <%= @from.capitalize %></em></p>
             </div>
         </div>
 

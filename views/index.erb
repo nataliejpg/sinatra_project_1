@@ -9,11 +9,17 @@
 
 <body>
 
+    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/drink/<%= @to %>/<%= @from %>">
+        <input type="text" class="span3" name="email">
+        <button type="submit" class="btn">Send Page</button>
+    </form>
+
     <div class="container">
 
         <div class="row-fluid">
             <div class="span10 offset1">
                 <h1 class="text-center">Want to go for a drink?</h1>
+                <p class="text-right" style="color:#FAFAFA"><em>from <%= @from.capitalize %></em></p>
             </div>
         </div>
 
