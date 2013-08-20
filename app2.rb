@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'pony'
+require 'mongo'
+require 'uri'
 require 'mongoid'
 require 'json'
 
