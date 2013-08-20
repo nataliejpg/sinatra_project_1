@@ -1,6 +1,9 @@
 require 'sinatra'
 require 'pony'
+require 'mongoid'
 require 'json'
+
+Mongoid.load!("mongoid.yml")
 
 Pony.options = { 
   :via => 'smtp',
@@ -15,6 +18,15 @@ Pony.options = {
     }
   }
 
+class User
+    include Mongoid::Document
+    field :name
+    field :recipient
+    field :recipient_email
+    field :chat_up_choice
+    field :number
+end
+
 get '/' do
     erb :form
 end
@@ -23,50 +35,92 @@ post '/' do
     @from = params[:from]
     @to = params[:to]
     @number= params[:number]
-    if params[:chat]=="Alphabet"
+    @chat= params[:chat]
+    @user=User.new(:name => @from, :recipient => @to, :number => @number)
+    if @chat=="Alphabet"
+        @user.chat_up_choice="alphabet"
+        @user.save
         erb :alphabet
-    elsif params[:chat]=="Parking Ticket"
+    elsif @chat=="Parking Ticket"
+        @user.chat_up_choice="ticket"
+        @user.save
         erb :ticket
-    elsif params[:chat]=="Me Without You"
+    elsif @chat=="Me Without You"
+        @user.chat_up_choice="nerd"
+        @user.save
         erb :nerd
-    elsif params[:chat]=="Lost Number"
+    elsif @chat=="Lost Number"
+        @user.chat_up_choice="phone"
+        @user.save
         erb :phone
-    elsif params[:chat]=="Be Unique"
+    elsif @chat=="Be Unique"
+        @user.chat_up_choice="unique"
         erb :unique
-    else erb :index
+    else @user.chat_up_choice="drink"
+        @user.save
+        erb :index
     end
 end
 
+=begin
 post '/:chat/:to/:from/:number' do
     @from = params[:from]
     @to= params[:to]
-    chat=params[:chat]
+    @chat=params[:chat]
     @email=params[:email]
     @number=params[:number]
+    @user=User.new(:name => @from, :recipient => @to, :chat_up_choice => @chat, :recipient_email => @email)
+    @user.save
     @link="http://stormy-crag-1959.herokuapp.com/phone/"+@to+"/"+@from+"/"+@number
     Pony.mail(:to => @email, :subject => "Message from an admirer", :body => erb(:email))
     erb :thanks
 end
+=end
 
+post '/:id' do
+    @user=User.find_by(:id => params[:id])
+    @user.recipient_email = params[:email]
+    @user.save
+    if @user.chat_up_choice=="unique"
+        @link="http://stormy-crag-1959.herokuapp.com/unique/"+@user.name+"/"+@user.recipient
+    elsif @user.chat_up_choice=="drink"
+        @link="http://stormy-crag-1959.herokuapp.com/drink/"+@user.name+"/"+@user.recipient
+    elsif @user.chat_up_choice=="nerd"
+        @link="http://stormy-crag-1959.herokuapp.com/nerd/"+@user.name+"/"+@user.recipient
+    elsif @user.chat_up_choice=="ticket"
+        @link="http://stormy-crag-1959.herokuapp.com/ticket"+@user.name+"/"+@user.recipient
+    elsif @user.chat_up_choice=="alphabet"
+        @link="http://stormy-crag-1959.herokuapp.com/alphabet/"+@user.name+"/"+@user.recipient
+    elsif @user.chat_up_choice =="phone"
+        @link="http://stormy-crag-1959.herokuapp.com/phone/"+@user.name+"/"+@user.recipient+"/"+@user.number
+    end
+    Pony.mail(:to => @user.recipient_email, :subject => "Message from an admirer", :body => erb(:email))
+    erb :thanks
+end
+
+=begin
 post '/:chat/:to/:from' do
     @to=params[:to]
     @from=params[:from]
-    chat=params[:chat]
+    @chat=params[:chat]
     @email=params[:email]
-    if chat=="unique"
+    @user=User.new(:name => @from, :recipient => @to, :chat_up_choice => @chat, :recipient_email => @email)
+    @user.save
+    if @chat=="unique"
         @link="http://stormy-crag-1959.herokuapp.com/unique/"+@to+"/"+@from
-    elsif chat=="drink"
+    elsif @chat=="drink"
         @link="http://stormy-crag-1959.herokuapp.com/drink/"+@to+"/"+@from
-    elsif chat=="nerd"
+    elsif @chat=="nerd"
         @link="http://stormy-crag-1959.herokuapp.com/nerd/"+@to+"/"+@from
-    elsif chat=="ticket"
+    elsif @chat=="ticket"
         @link="http://stormy-crag-1959.herokuapp.com/ticket"+@to+"/"+@from
-    elsif chat=="alphabet"
+    elsif @chat=="alphabet"
         @link="http://stormy-crag-1959.herokuapp.com/alphabet/"+@to+"/"+@from
     end
     Pony.mail(:to => @email, :subject => "Message from an admirer", :body => erb(:email))
     erb :thanks
 end
+=end
 
 get '/:chat/:to/:from' do
     @from = params[:from]
@@ -90,4 +144,9 @@ get '/:chat/:to/:from/:number' do
     @number= params[:number]
     @from= params[:from]
     erb :phone
+end
+
+get '/list' do
+    @users = User.all
+    erb :list
 end

@@ -11,15 +11,15 @@
 
     <div class="container">
 
-    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/phone/<%= @to %>/<%= @from %>/<%= @number %>">
+    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/<%= @user.id %>">
         <input type="text" class="span3" name="email">
         <button type="submit" class="btn">Send Page</button>
     </form>
 
         <div class="row-fluid">
             <div class="words span 6 offset1">
-                <h1> Hey, <%= @to.capitalize %>. I've lost my number, could I borrow yours?</h1>
-                <p><em>for more information or a date please call <%= @number %><em></p>
+                <h1> Hey, <%= @user.recipient.capitalize %>. I've lost my number, could I borrow yours?</h1>
+                <p><em>for more information or a date please call <%= @user.number %><em></p>
             </div>
         </div>
 

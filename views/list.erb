@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat Ups As A Service</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Recipient Name</th>
+                <th>Chat Up</th>
+                <th>Recipient Email</th>
+            </tr>
+            <% @users.each do |u| %>
+            <tr>
+                <td><%= u.id %></td>
+                <td><%= u.name %></td>
+                <td><%= u.recipient %></td>
+                <td><%= u.chat_up_choice %></td>
+                <td><%= u.recipient_email %></td>
+            </tr>
+            <% end %>
+        </table>
+        <p>Total: <%= User.count %></p>
+
+
+    </div>
+
+</body>
+
+</html>

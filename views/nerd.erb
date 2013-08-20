@@ -11,7 +11,7 @@
 
     <div class="container">
 
-        <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/nerd/<%= @to %>/<%= @from %>">
+        <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/<%= @user.id %>">
             <input type="text" class="span3" name="email">
             <button type="submit" class="btn">Send Page</button>
         </form>
@@ -20,8 +20,8 @@
 
             <div class="span8 offset2 words">
 
-                <h1>Me without you, <%= @to.capitalize %>, is like a nerd without braces, a shoe without laces, asentencewithoutspaces.</h1>
-                <p><em>from <%= @from.capitalize %></em></p>
+                <h1>Me without you, <%= @user.recipient.capitalize %>, is like a nerd without braces, a shoe without laces, asentencewithoutspaces.</h1>
+                <p><em>from <%= @user.name.capitalize %></em></p>
 
             </div>
             

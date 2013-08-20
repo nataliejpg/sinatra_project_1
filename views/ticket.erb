@@ -10,15 +10,15 @@
 <body>
     <div class="container">
 
-    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/ticket/<%= @to %>/<%= @from %>">
+    <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/<%= @user.id %>">
         <input type="text" class="span3" name="email">
         <button type="submit" class="btn">Send Page</button>
     </form>
 
         <div class="hero-unit">
 
-            <h1>Are you a parking ticket, <%= @to.capitalize %>? Because you've got <span class="fine">FINE</span> written all over you.</h1>
-            <p><em>from <%= @from.capitalize %></em></p>
+            <h1>Are you a parking ticket, <%= @user.recipient.capitalize %>? Because you've got <span class="fine">FINE</span> written all over you.</h1>
+            <p><em>from <%= @user.name.capitalize %></em></p>
 
         </div>
 

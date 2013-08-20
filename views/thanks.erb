@@ -11,8 +11,8 @@
     <div class="container">
 
         <div class="hero-unit">
-            <h1>Thank You <%= @from.capitalize %></h1>
-            <p>Your page has been sent to <%= @to.capitalize %> at <%= @email %>.</p>
+            <h1>Thank You <%= @user.name.capitalize %></h1>
+            <p>Your page has been sent to <%= @user.recipient.capitalize %> at <%= @user.recipient_email %>.</p>
         </div>
 
 
