@@ -4,4 +4,4 @@ gem 'sinatra'
 gem 'pony'
 gem 'foreman'
 gem 'mongoid'
-gem 'mongo'
+
