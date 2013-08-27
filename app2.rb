@@ -68,72 +68,39 @@ post '/' do
     end
 end
 
-=begin
-post '/:chat/:to/:from/:number' do
-    @from = params[:from]
-    @to= params[:to]
-    @chat=params[:chat]
-    @email=params[:email]
-    @number=params[:number]
-    @user=User.new(:name => @from, :recipient => @to, :chat_up_choice => @chat, :recipient_email => @email)
-    @user.save
-    @link="http://stormy-crag-1959.herokuapp.com/phone/"+@to+"/"+@from+"/"+@number
-    Pony.mail(:to => @email, :subject => "Message from an admirer", :body => erb(:email))
-    erb :thanks
-end
-=end
 
 # user has hit send page to...
 post '/:id' do
     @user=User.find_by(:id => params[:id])
     @user.recipient_email = params[:email]
     @user.save
-    @link="http://stormy-crag-1959.herokuapp.com/@user.id"
+    @link="http://stormy-crag-1959.herokuapp.com/"+@user.id
     Pony.mail(:to => @user.recipient_email, :subject => "Message from an admirer", :body => erb(:email))
     erb :thanks
 end
 
-=begin
-post '/:chat/:to/:from' do
-    @to=params[:to]
-    @from=params[:from]
-    @chat=params[:chat]
-    @email=params[:email]
-    @user=User.new(:name => @from, :recipient => @to, :chat_up_choice => @chat, :recipient_email => @email)
-    @user.save
-    if @chat=="unique"
-        @link="http://stormy-crag-1959.herokuapp.com/unique/"+@to+"/"+@from
-    elsif @chat=="drink"
-        @link="http://stormy-crag-1959.herokuapp.com/drink/"+@to+"/"+@from
-    elsif @chat=="nerd"
-        @link="http://stormy-crag-1959.herokuapp.com/nerd/"+@to+"/"+@from
-    elsif @chat=="ticket"
-        @link="http://stormy-crag-1959.herokuapp.com/ticket"+@to+"/"+@from
-    elsif @chat=="alphabet"
-        @link="http://stormy-crag-1959.herokuapp.com/alphabet/"+@to+"/"+@from
-    end
-    Pony.mail(:to => @email, :subject => "Message from an admirer", :body => erb(:email))
-    erb :thanks
-end
-=end
-
-# link in email has been clicked
+# link in email has been clicked or list
 get '/:id' do
-    @user=User.find_by(:id => params[:id])
-    if @user.chat_up_choice=="alphabet"
-        erb:alphabet
-    elsif @user.chat_up_choice=="ticket"
-        erb :ticket
-    elsif @user.chat_up_choice=="nerd"
-        erb :nerd
-    elsif @user.chat_up_choice=="drink"
-        erb :index
-    elsif @user.chat_up_choice=="unique"
-        erb :unique
-    elsif @user.chat_up_choice=="raisins"
-        erb :raisins
-    elsif @user.chat_up_choice=="phone"
-        erb :phone
+    if params[:id]=="list"
+        @users=User.all
+        erb :list
+    else
+        @user=User.find_by(:id => params[:id])
+        if @user.chat_up_choice=="alphabet"
+            erb:alphabet
+        elsif @user.chat_up_choice=="ticket"
+            erb :ticket
+        elsif @user.chat_up_choice=="nerd"
+            erb :nerd
+        elsif @user.chat_up_choice=="drink"
+            erb :index
+        elsif @user.chat_up_choice=="unique"
+            erb :unique
+        elsif @user.chat_up_choice=="raisins"
+            erb :raisins
+        elsif @user.chat_up_choice=="phone"
+            erb :phone
+        end
     end
 end
 
@@ -141,39 +108,4 @@ end
 get '/date/:id' do
     @user=User.find_by(:id => params[:id])
     erb :date
-end
-
-=begin
-get '/:chat/:to/:from' do
-    @from = params[:from]
-    @to = params[:to]
-    if params[:chat]=="alphabet"
-        erb :alphabet
-    elsif params[:chat]=="ticket"
-        erb :ticket
-    elsif params[:chat]=="nerd"
-        erb :nerd
-    elsif params[:chat]=="drink"
-        erb :index
-    elsif params[:chat]=="unique"
-        erb :unique
-    elsif params [:chat]=="raisins"
-        erb :raisins
-    end
-end
-
-
-
-get '/:chat/:to/:from/:number' do
-    @to = params[:to]
-    @number= params[:number]
-    @from= params[:from]
-    erb :phone
-end
-=end
-
-# lists all users of the form
-get '/list' do
-    @users = User.all
-    erb :list
 end
