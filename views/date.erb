@@ -4,10 +4,10 @@
 <head>
     <title>Chat Ups As A Service</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/ticket.css" type="text/css"/>
 </head>
 
 <body>
+
     <div class="container">
 
     <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/<%= @user.id %>">
@@ -15,14 +15,17 @@
         <input type="text" class="span3" name="email" placeholder="lucky@recipient.com">
     </form>
 
-        <div class="hero-unit">
+        <div class="row-fluid">
 
-            <h1>Are you a parking ticket, <%= @user.recipient.capitalize %>? Because you've got <span class="fine">FINE</span> written all over you.</h1>
-            <p><em>from <%= @user.name.capitalize %></em></p>
-
+            <div>
+                <h1>How about a date?</h1>
+                <p>from <%= @user.name.capitalize %></p>
+            </div>
         </div>
 
+
     </div>
+
 </body>
 
 </html>

@@ -27,10 +27,12 @@ class User
     field :number
 end
 
+# entry onto the form
 get '/' do
     erb :form
 end
 
+# form completed
 post '/' do
     @from = params[:from]
     @to = params[:to]
@@ -56,6 +58,10 @@ post '/' do
     elsif @chat=="Be Unique"
         @user.chat_up_choice="unique"
         erb :unique
+    elsif @chat=="Raisins"
+        @user.chat_up_choice="raisins"
+        @user.save
+        erb :raisins
     else @user.chat_up_choice="drink"
         @user.save
         erb :index
@@ -77,23 +83,12 @@ post '/:chat/:to/:from/:number' do
 end
 =end
 
+# user has hit send page to...
 post '/:id' do
     @user=User.find_by(:id => params[:id])
     @user.recipient_email = params[:email]
     @user.save
-    if @user.chat_up_choice=="unique"
-        @link="http://stormy-crag-1959.herokuapp.com/unique/"+@user.name+"/"+@user.recipient
-    elsif @user.chat_up_choice=="drink"
-        @link="http://stormy-crag-1959.herokuapp.com/drink/"+@user.name+"/"+@user.recipient
-    elsif @user.chat_up_choice=="nerd"
-        @link="http://stormy-crag-1959.herokuapp.com/nerd/"+@user.name+"/"+@user.recipient
-    elsif @user.chat_up_choice=="ticket"
-        @link="http://stormy-crag-1959.herokuapp.com/ticket"+@user.name+"/"+@user.recipient
-    elsif @user.chat_up_choice=="alphabet"
-        @link="http://stormy-crag-1959.herokuapp.com/alphabet/"+@user.name+"/"+@user.recipient
-    elsif @user.chat_up_choice =="phone"
-        @link="http://stormy-crag-1959.herokuapp.com/phone/"+@user.name+"/"+@user.recipient+"/"+@user.number
-    end
+    @link="http://stormy-crag-1959.herokuapp.com/@user.id"
     Pony.mail(:to => @user.recipient_email, :subject => "Message from an admirer", :body => erb(:email))
     erb :thanks
 end
@@ -122,6 +117,33 @@ post '/:chat/:to/:from' do
 end
 =end
 
+# link in email has been clicked
+get '/:id' do
+    @user=User.find_by(:id => params[:id])
+    if @user.chat_up_choice=="alphabet"
+        erb:alphabet
+    elsif @user.chat_up_choice=="ticket"
+        erb :ticket
+    elsif @user.chat_up_choice=="nerd"
+        erb :nerd
+    elsif @user.chat_up_choice=="drink"
+        erb :index
+    elsif @user.chat_up_choice=="unique"
+        erb :unique
+    elsif @user.chat_up_choice=="raisins"
+        erb :raisins
+    elsif @user.chat_up_choice=="phone"
+        erb :phone
+    end
+end
+
+# second page of raisins chat up
+get '/date/:id' do
+    @user=User.find_by(:id => params[:id])
+    erb :date
+end
+
+=begin
 get '/:chat/:to/:from' do
     @from = params[:from]
     @to = params[:to]
@@ -135,8 +157,11 @@ get '/:chat/:to/:from' do
         erb :index
     elsif params[:chat]=="unique"
         erb :unique
+    elsif params [:chat]=="raisins"
+        erb :raisins
     end
 end
+
 
 
 get '/:chat/:to/:from/:number' do
@@ -145,7 +170,9 @@ get '/:chat/:to/:from/:number' do
     @from= params[:from]
     erb :phone
 end
+=end
 
+# lists all users of the form
 get '/list' do
     @users = User.all
     erb :list

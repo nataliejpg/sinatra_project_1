@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat Ups As A Service</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row-fluid">
+
+            <div>
+                <h1>Hey <%= @user.recipient.capitalize %>, do you have any raisins?</h1>
+                <a href="/date/<%= @user.id %>" class="btn btn-success">Yes</a>
+                <a href="/date/<%= @user.id %>" class="btn btn-danger">No</a>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
