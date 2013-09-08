@@ -4,22 +4,50 @@
 <head>
     <title>Chat Ups As A Service</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/raisins.css"/>
     <link rel="shortcut icon" href="/favicon.ico"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btn").click(function () {
+                $("#raisins").hide();
+                $("#date").show("slow");
+                $("#from").show("slow");
+                $("#image").show("slow");
+                                        });
+                                    });
+    </script>
 </head>
 
 <body>
 
     <div class="container">
 
-        <div class="row-fluid">
+        <form class="navbar-form pull-right navbar-fixed-bottom" method="post" action="/<%= @user.id %>">
+            <button type="submit" class="btn">Send page to</button>
+            <input type="text" class="span3" name="email" placeholder="lucky@recipient.com">
+        </form>
 
-            <div>
-                <h1>Hey <%= @user.recipient.capitalize %>, do you have any raisins?</h1>
-                <a href="/date/<%= @user.id %>" class="btn btn-success">Yes</a>
-                <a href="/date/<%= @user.id %>" class="btn btn-danger">No</a>
-            </div>
+        <div style="padding-top: 150px"></div>
+
+        <div id="raisins">
+            <h1>Hey <%= @user.recipient.capitalize %>, do you like raisins?</h1>
+            <btn class="btn btn-success">Yes</btn>
+            <btn class="btn btn-danger">No</btn>
+        </div>
+    
+        <div align="center" id="date" style="display:none" class="row">
+            <p><strong>HOW ABOUT A DATE?</strong></p>
         </div>
 
+        <div id="from" class="row" style="display:none">
+            <p>(with <%= @user.name.capitalize %>)</p>
+        </div>
+
+        <div align="center" id="image" style="display:none">
+            <img width="400" height="400" src="Fruit-Heart.jpg"/>
+        </div>
 
     </div>
 

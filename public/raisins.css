@@ -1,0 +1,22 @@
+body{
+    background: url(raisins3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #FAFAFA;
+}
+
+#raisins{
+    text-align: center;
+    height: 120px;
+    color: #FAFAFA;
+}
+
+#date{
+    top: 50%;
+    left: 50%;
+    font-size: 80px;
+}
+
+#from{
+    text-align: right;
+}
